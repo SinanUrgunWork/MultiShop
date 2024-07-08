@@ -10,7 +10,6 @@ namespace MultiShop.Catalog.Services.ProductImageServices
     {
         private readonly IMongoCollection<ProductImage> _ProductImageCollection;
         private readonly IMapper _mapper;
-
         public ProductImageService(IMapper mapper, IDatabaseSettings _databaseSettings)
         {
             var client = new MongoClient(_databaseSettings.ConnectionString);
@@ -18,7 +17,6 @@ namespace MultiShop.Catalog.Services.ProductImageServices
             _ProductImageCollection = database.GetCollection<ProductImage>(_databaseSettings.ProductImageCollectionName);
             _mapper = mapper;
         }
-
         public async Task CreateProductImageAsync(CreateProductImageDto createProductImageDto)
         {
             var value = _mapper.Map<ProductImage>(createProductImageDto);
@@ -36,7 +34,13 @@ namespace MultiShop.Catalog.Services.ProductImageServices
             return _mapper.Map<GetByIdProductImageDto>(values);
         }
 
-        public async Task<List<ResultProductImageDto>> GettAllCateforyAsync()
+        public async Task<GetByIdProductImageDto> GetByProductIdProductImageAsync(string id)
+        {
+            var values = await _ProductImageCollection.Find(x => x.ProductID == id).FirstOrDefaultAsync();
+            return _mapper.Map<GetByIdProductImageDto>(values);
+        }
+
+        public async Task<List<ResultProductImageDto>> GettAllProductImageAsync()
         {
             var values = await _ProductImageCollection.Find(x => true).ToListAsync();
             return _mapper.Map<List<ResultProductImageDto>>(values);
@@ -46,7 +50,6 @@ namespace MultiShop.Catalog.Services.ProductImageServices
         {
             var values = _mapper.Map<ProductImage>(updateProductImageDto);
             await _ProductImageCollection.FindOneAndReplaceAsync(x => x.ProductImageID == updateProductImageDto.ProductImageID, values);
-
         }
     }
 }
