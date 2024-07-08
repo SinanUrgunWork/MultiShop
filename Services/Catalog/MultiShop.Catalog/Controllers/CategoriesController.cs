@@ -44,6 +44,6 @@ namespace MultiShop.Catalog.Controllers
         {
             await _categoryService.UpdateCategoriAsync(updateCategoryDto);
             return Ok("Success UpdateCategoriAsync");
-        }
+        } 
     }
 }
