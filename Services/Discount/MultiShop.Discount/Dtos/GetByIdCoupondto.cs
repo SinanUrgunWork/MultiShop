@@ -1,6 +1,14 @@
-﻿namespace MultiShop.Discount.Dtos
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace MultiShop.Discount.Dtos
 {
     public class GetByIdCoupondto
     {
+        public int CouponId { get; set; }
+        public string Code { get; set; }
+        public int Rate { get; set; }
+        public bool IsActive { get; set; }
+
+        public DateTime ValidDate { get; set; }
     }
 }
