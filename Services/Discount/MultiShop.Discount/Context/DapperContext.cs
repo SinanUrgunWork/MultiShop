@@ -1,15 +1,14 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using MultiShop.Discount.Entites;
+using MultiShop.Discount.Entities;
 using System.Data;
 
 namespace MultiShop.Discount.Context
 {
-    public class DapperContext:DbContext
+    public class DapperContext : DbContext
     {
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
-
         public DapperContext(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -17,9 +16,9 @@ namespace MultiShop.Discount.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=;inital Catalog=MultiShopDiscountDb;integrated Security = true");
+            optionsBuilder.UseSqlServer("Server=(localdb)\\localDB1;initial Catalog=MultiShopDiscountDb;integrated Security=true");
         }
-        public DbSet<Coupon> Coupones { get; set; }
+        public DbSet<Coupon> Coupons { get; set; }
         public IDbConnection CreateConnection() => new SqlConnection(_connectionString);
     }
 }
