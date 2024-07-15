@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MultiShop.Order.Application.Interfaces
 {
-    internal interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(int id);
