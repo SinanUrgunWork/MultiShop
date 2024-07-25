@@ -1,1 +1,10 @@
+# Mark all .cs files as C#
 *.cs linguist-language=C#
+
+# Optionally mark HTML files to be ignored for language statistics
+*.html linguist-detectable=false
+*.htm linguist-detectable=false
+
+# Mark other file types if needed
+*.js linguist-detectable=false
+*.css linguist-detectable=false
