@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MongoDB.Driver;
-using MultiShop.Catalog.Dtos.ProdustDetailDtos;
-using MultiShop.Catalog.Entities;
+using MultiShop.Catalog.Dtos.ProductDetailDtos;
+using MultiShop.Catalog.Entites;
 using MultiShop.Catalog.Settings;
 
-namespace MultiShop.Catalog.Services.ProductDetailServices
+namespace MultiShop.Catalog.Services.ProductDetailDetailServices
 {
     public class ProductDetailService : IProductDetailService
     {
@@ -17,30 +17,18 @@ namespace MultiShop.Catalog.Services.ProductDetailServices
             _ProductDetailCollection = database.GetCollection<ProductDetail>(_databaseSettings.ProductDetailCollectionName);
             _mapper = mapper;
         }
-
-        public Task CreateCategoriAsync(CreateProductDetailDto createProductDetailDto)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task CreateProductDetailAsync(CreateProductDetailDto createProductDetailDto)
         {
             var values = _mapper.Map<ProductDetail>(createProductDetailDto);
             await _ProductDetailCollection.InsertOneAsync(values);
         }
-
-        public Task DeleteCategoriAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task DeleteProductDetailAsync(string id)
         {
-            await _ProductDetailCollection.DeleteOneAsync(x => x.ProductDetailID == id);
+            await _ProductDetailCollection.DeleteOneAsync(x => x.ProductDetailId == id);
         }
         public async Task<GetByIdProductDetailDto> GetByIdProductDetailAsync(string id)
         {
-            var values = await _ProductDetailCollection.Find<ProductDetail>(x => x.ProductDetailID == id).FirstOrDefaultAsync();
+            var values = await _ProductDetailCollection.Find<ProductDetail>(x => x.ProductDetailId == id).FirstOrDefaultAsync();
             return _mapper.Map<GetByIdProductDetailDto>(values);
         }
 
@@ -50,26 +38,15 @@ namespace MultiShop.Catalog.Services.ProductDetailServices
             return _mapper.Map<GetByIdProductDetailDto>(values);
         }
 
-        public Task GettAllCateforyAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<List<ResultProductDetailDto>> GettAllProductDetailAsync()
         {
             var values = await _ProductDetailCollection.Find(x => true).ToListAsync();
             return _mapper.Map<List<ResultProductDetailDto>>(values);
         }
-
-        public Task UpdateCategoriAsync(UpdateProductDetailDto updateProductDetailDto)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task UpdateProductDetailAsync(UpdateProductDetailDto updateProductDetailDto)
         {
             var values = _mapper.Map<ProductDetail>(updateProductDetailDto);
-            await _ProductDetailCollection.FindOneAndReplaceAsync(x => x.ProductDetailID == updateProductDetailDto.ProductDetailID, values);
+            await _ProductDetailCollection.FindOneAndReplaceAsync(x => x.ProductDetailId == updateProductDetailDto.ProductDetailId, values);
         }
     }
 }

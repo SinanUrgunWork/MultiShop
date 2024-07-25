@@ -1,30 +1,20 @@
 ﻿{
-  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:48929",
-      "sslPort": 44383
+      "applicationUrl": "http://localhost:51090",
+      "sslPort": 44367
     }
   },
   "profiles": {
-    "http": {
+    "MultiShop.Order.WebApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "swagger",
-      "applicationUrl": "http://localhost:5237",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "https": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7148;http://localhost:5237",
+      "applicationUrl": "http://localhost:7072;",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

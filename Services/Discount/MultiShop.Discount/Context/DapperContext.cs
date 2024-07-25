@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using MultiShop.Discount.Entities;
+using MultiShop.Discount.Entites;
 using System.Data;
 
 namespace MultiShop.Discount.Context
@@ -16,7 +16,7 @@ namespace MultiShop.Discount.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\localDB1;initial Catalog=MultiShopDiscountDb;integrated Security=true");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-R7AR1ND;initial Catalog=MultiShopDiscountDb;integrated Security=true");
         }
         public DbSet<Coupon> Coupons { get; set; }
         public IDbConnection CreateConnection() => new SqlConnection(_connectionString);
